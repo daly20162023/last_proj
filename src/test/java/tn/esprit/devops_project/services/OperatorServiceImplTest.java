@@ -43,4 +43,17 @@ class OperatorServiceImplTest {
         assertEquals(operator1, result.get(0));
         assertEquals(operator2, result.get(1));
     }
+    @Test
+    void testAddOperator() {
+        // Arrange
+        Operator operator = new Operator(/* constructor parameters */);
+        when(operatorRepository.save(any(Operator.class))).thenReturn(operator);
+
+        // Act
+        Operator result = operatorService.addOperator(operator);
+
+        // Assert
+        assertEquals(operator, result);
+        verify(operatorRepository, times(1)).save(operator);
+    }
 }
