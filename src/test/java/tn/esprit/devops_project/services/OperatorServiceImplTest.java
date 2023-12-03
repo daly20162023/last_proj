@@ -56,4 +56,29 @@ class OperatorServiceImplTest {
         assertEquals(operator, result);
         verify(operatorRepository, times(1)).save(operator);
     }
+    @Test
+    void testDeleteOperator() {
+        // Arrange
+        Long idToDelete = 1L;
+
+        // Act
+        operatorService.deleteOperator(idToDelete);
+
+        // Assert
+        verify(operatorRepository, times(1)).deleteById(idToDelete);
+    }
+    @Test
+    void testUpdateOperator() {
+        // Arrange
+        Operator operatorToUpdate = new Operator(/* set constructor parameters */);
+        when(operatorRepository.save(any(Operator.class))).thenReturn(operatorToUpdate);
+
+        // Act
+        Operator updatedOperator = operatorService.updateOperator(operatorToUpdate);
+
+        // Assert
+        verify(operatorRepository, times(1)).save(operatorToUpdate);
+        assertEquals(operatorToUpdate, updatedOperator);
+    }
+
 }
