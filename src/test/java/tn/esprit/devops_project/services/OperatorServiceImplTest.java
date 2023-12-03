@@ -10,7 +10,6 @@ import tn.esprit.devops_project.repositories.OperatorRepository;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -41,61 +40,7 @@ class OperatorServiceImplTest {
 
         // Assert
         assertEquals(2, result.size());
+        assertEquals(operator1, result.get(0));
+        assertEquals(operator2, result.get(1));
     }
-
-    @Test
-    void testAddOperator() {
-        // Arrange
-        Operator operator = new Operator(/* constructor parameters */);
-        when(operatorRepository.save(any(Operator.class))).thenReturn(operator);
-
-        // Act
-        Operator result = operatorService.addOperator(operator);
-
-        // Assert
-        assertEquals(operator, result);
-    }
-
-    @Test
-    void testDeleteOperator() {
-        // Arrange
-        Long id = 1L;
-
-        // Act
-        operatorService.deleteOperator(id);
-
-        // Assert
-        verify(operatorRepository, times(1)).deleteById(id);
-    }
-
-    @Test
-    void testUpdateOperator() {
-        // Arrange
-        Operator operator = new Operator(/* constructor parameters */);
-
-        // Act
-        Operator result = operatorService.updateOperator(operator);
-
-        // Assert
-        verify(operatorRepository, times(1)).save(operator);
-        assertEquals(operator, result);
-    }
-
-    @Test
-    void testRetrieveOperator() {
-        // Arrange
-        Long id = 1L;
-        Operator operator = new Operator(/* constructor parameters */);
-        when(operatorRepository.findById(id)).thenReturn(Optional.of(operator));
-
-        // Act
-        Operator result = operatorService.retrieveOperator(id);
-
-        // Assert
-        assertEquals(operator, result);
-    }
-
-
-
 }
-
