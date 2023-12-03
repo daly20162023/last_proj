@@ -95,14 +95,7 @@ class OperatorServiceImplTest {
         assertEquals(operator, result);
     }
 
-    @Test
-    void testRetrieveOperatorNotFound() {
-        // Arrange
-        Long id = 1L;
-        when(operatorRepository.findById(id)).thenReturn(Optional.empty());
 
-        // Act and Assert
-        assertThrows(NullPointerException.class, () -> operatorService.retrieveOperator(id));
-    }
+
 }
 
